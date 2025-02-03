@@ -2,6 +2,7 @@
 import pandas as pd
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+from sqlalchemy import create_engine
 
 # Set your credentials
 client_id = 'da23dea1effe47aa9a166aae9f75a940'
@@ -41,12 +42,28 @@ for item in recent_tracks['items']:
         'played_at': played_at
     })
 
+tracks_ls = []
+tracks_ls.extend(recent_tracks_ls)
+#print(tracks_ls)
+
 df = pd.DataFrame(recent_tracks_ls)
+track_df = pd.DataFrame(tracks_ls)
 
 df.to_csv("recent_tracks.csv", index=False)
-
+df.to_csv("tracks.csv", index=False)
 #Print the first 5 data
-print(df.head())
+print(track_df.head())
 
 
+username = 'ifeoma' 
+password = 'postgre12' 
+host = 'localhost' 
+port = '5432'  
+database_name = 'spotifydata' 
+
+# Create a SQLAlchemy engine 
+engine = create_engine(f'postgresql+psycopg2://{username}:{password}@{host}:{port}/{database_name}') 
+# Load DataFrame into PostgreSQL table 
+df.to_sql('recent_tracks', engine, if_exists='replace', index=False)
+track_df.to_sql('tracks', engine, if_exists='replace', index=False)
 
