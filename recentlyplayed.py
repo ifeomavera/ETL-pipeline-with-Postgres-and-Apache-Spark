@@ -18,7 +18,7 @@ sp_oauth = SpotifyOAuth(client_id=client_id, client_secret=client_secret, redire
 sp = spotipy.Spotify(auth_manager=sp_oauth)
 
 #Creating the recent tracks log
-historical_tracks_file = 'base.csv'
+historical_tracks_file = 'all_recent_tracks.csv'
 #Checks if the file exists 
 if os.path.exists(historical_tracks_file):
     historical_tracks_df = pd.read_csv(historical_tracks_file)
@@ -62,7 +62,7 @@ track_df = pd.DataFrame(unique_tracks)
 track_df.sort_values(by='played_at', inplace=True)
 
 df.to_csv("recent_tracks.csv", index=False)
-track_df.to_csv("tracks.csv", index=False)
+track_df.to_csv("all_recent_tracks.csv", index=False)
 #Print the first 5 data
 print(track_df.head())
 
@@ -77,5 +77,5 @@ database_name = 'spotifydata'
 engine = create_engine(f'postgresql+psycopg2://{username}:{password}@{host}:{port}/{database_name}') 
 # Load DataFrame into PostgreSQL table 
 df.to_sql('recent_tracks', engine, if_exists='replace', index=False)
-track_df.to_sql('tracks', engine, if_exists='replace', index=False)
+track_df.to_sql('all_recent_tracks', engine, if_exists='replace', index=False)
 

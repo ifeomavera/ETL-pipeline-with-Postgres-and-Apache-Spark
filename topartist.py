@@ -18,7 +18,7 @@ sp_oauth = SpotifyOAuth(client_id=client_id, client_secret=client_secret, redire
 sp = spotipy.Spotify(auth_manager=sp_oauth)
 
 # Get current user's playlists
-historical_artists_file = 'base_artists.csv'
+historical_artists_file = 'all_top_artists.csv'
 if os.path.exists(historical_artists_file):
     historical_artists_df = pd.read_csv(historical_artists_file)
     all_artists = historical_artists_df.to_dict('records')
@@ -46,10 +46,10 @@ unique_artists = {artist['Artistname']: artist for artist in all_artists}.values
 
 df = pd.DataFrame(artist_info_ls)
 all_df = pd.DataFrame(unique_artists)
-all_df.sort_values(by='Artistname', inplace=True)
+#all_df.sort_values(by='Artistname', inplace=True)
 
 df.to_csv('top_artists.csv', index=False)
-all_df.to_csv('all_artists.csv', index = False)
+all_df.to_csv('all_top_artists.csv', index = False)
 
 username = 'ifeoma' 
 password = 'postgre12' 
@@ -61,7 +61,7 @@ database_name = 'spotifydata'
 engine = create_engine(f'postgresql+psycopg2://{username}:{password}@{host}:{port}/{database_name}') 
 # Load DataFrame into PostgreSQL table 
 df.to_sql('top_artists', engine, if_exists='replace', index=False)
-all_df.to_sql('all_artists', engine, if_exists='replace', index=False)
+all_df.to_sql('all_top_artists', engine, if_exists='replace', index=False)
 
 
 
