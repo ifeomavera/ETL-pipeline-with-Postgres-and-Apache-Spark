@@ -10,7 +10,6 @@ import subprocess
 import datetime
 
 
-
 # Set your credentials
 client_id = 'da23dea1effe47aa9a166aae9f75a940'
 client_secret = '372afc0e83154ed2976330775037b61e'
