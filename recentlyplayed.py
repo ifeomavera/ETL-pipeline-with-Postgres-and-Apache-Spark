@@ -4,6 +4,12 @@ import pandas as pd
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from sqlalchemy import create_engine
+import schedule
+import time
+import subprocess
+import datetime
+
+
 
 # Set your credentials
 client_id = 'da23dea1effe47aa9a166aae9f75a940'
@@ -64,7 +70,7 @@ track_df.sort_values(by='played_at', inplace=True)
 df.to_csv("recent_tracks.csv", index=False)
 track_df.to_csv("all_recent_tracks.csv", index=False)
 #Print the first 5 data
-print(track_df.head())
+print(df.head())
 
 
 username = 'ifeoma' 
@@ -79,3 +85,24 @@ engine = create_engine(f'postgresql+psycopg2://{username}:{password}@{host}:{por
 df.to_sql('recent_tracks', engine, if_exists='replace', index=False)
 track_df.to_sql('all_recent_tracks', engine, if_exists='replace', index=False)
 
+
+def run_script1():
+    print(f"Running script1 at {datetime.datetime.now()}")
+    subprocess.run(["python", "C:\Users\IFEOMA\Desktop\Data Engineering\Projects\spotifydata\recentlyplayed.py"])
+
+def run_script2():
+    print(f"Running script2 at {datetime.datetime.now()}")
+    subprocess.run(["python", "C:\Users\IFEOMA\Desktop\Data Engineering\Projects\spotifydata\top_tracks.py"])
+
+def run_script3():
+    print(f"Running script3 at {datetime.datetime.now()}")
+    subprocess.run(["python", "C:\Users\IFEOMA\Desktop\Data Engineering\Projects\spotifydata\topartists.py"])
+
+# Schedule each script
+schedule.every(2).hours.do(run_script1)
+schedule.every(4).hours.do(run_script2)
+schedule.every().day.at("12:00").do(run_script3)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
