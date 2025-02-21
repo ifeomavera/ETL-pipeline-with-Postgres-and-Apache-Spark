@@ -79,7 +79,7 @@ def job2():
     print("Top Tracks Pipeline executed!")
 
 # Schedule the job to run every hour
-schedule.every(3).hour.do(job2)
+schedule.every(3).hours.do(job2)
 
 # Run the scheduler in a loop
 while True:

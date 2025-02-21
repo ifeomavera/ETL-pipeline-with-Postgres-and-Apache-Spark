@@ -77,7 +77,7 @@ def job1():
     subprocess.Popen(['python', 'topartist.py'])
 
 # Schedule the job to run every 2 hours
-schedule.every(2).hour.do(job1)
+schedule.every(2).hours.do(job1)
 
 # Run the scheduler in a loop
 while True:
