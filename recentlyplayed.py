@@ -73,14 +73,14 @@ def job1():
     print("Pipeline executed!")
 
     # Run the other two scripts as subprocesses
-    subprocess.Popen(['python', 'top_tracks.py'])
-    subprocess.Popen(['python', 'topartist.py'])
+   # subprocess.Popen(['python', 'top_tracks.py'])
+    # subprocess.Popen(['python', 'topartist.py'])
 
 # Schedule the job to run every 2 hours
-schedule.every(2).hours.do(job1)
-
+#schedule.do(job1)
+job1()
 # Run the scheduler in a loop
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+# while True:
+    # schedule.run_pending()
+    # time.sleep(1)
 

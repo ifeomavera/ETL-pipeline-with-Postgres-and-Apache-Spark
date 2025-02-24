@@ -69,12 +69,12 @@ def job3():
     print("Top Artists Pipeline executed!")
 
 # Schedule the job to run every hour
-schedule.every(4).hours.do(job3)
-
+# schedule.every(4).hours.do(job3)
+job3()
 # Run the scheduler in a loop
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+# while True:
+    # schedule.run_pending()
+    # time.sleep(1)
 
 
 

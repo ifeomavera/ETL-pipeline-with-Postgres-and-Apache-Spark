@@ -79,11 +79,11 @@ def job2():
     print("Top Tracks Pipeline executed!")
 
 # Schedule the job to run every hour
-schedule.every(3).hours.do(job2)
-
+#schedule.every(3).hours.do(job2)
+job2()
 # Run the scheduler in a loop
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+#while True:
+    #schedule.run_pending()
+    #time.sleep(1)
 
 
