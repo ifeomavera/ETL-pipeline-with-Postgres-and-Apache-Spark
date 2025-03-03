@@ -15,7 +15,7 @@ def job1():
     redirect_uri = 'http://localhost:8888/callback'
 
     # Set up Spotify OAuth
-    scope = 'user-read-recently-played' 
+    scope = 'user-read-recently-played'
     sp_oauth = SpotifyOAuth(client_id=client_id, client_secret=client_secret, redirect_uri=redirect_uri, scope=scope, cache_path='.cache')
 
     # Create a Spotipy client
