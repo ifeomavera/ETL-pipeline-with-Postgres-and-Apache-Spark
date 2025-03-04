@@ -31,7 +31,7 @@ def job1():
         tracks_ls = []
 
     # Get current user's playlists
-    recent_tracks = sp.current_user_recently_played(limit=50)
+    recent_tracks = sp.current_user_recently_played(limit=50, after=None, before=None)
 
     # Creating the recent tracks list
     recent_tracks_ls = []
