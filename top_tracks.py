@@ -10,8 +10,8 @@ import time
 def job2():
     # Set your credentials
     client_id = 'da23dea1effe47aa9a166aae9f75a940'
-    client_secret = '372afc0e83154ed2976330775037b61e'
-    redirect_uri = 'http://localhost:8888/callback'
+    client_secret = '0ebadb5204dc46459d7b024b940e2e5f'
+    redirect_uri = 'http://127.0.0.1:8888/callback'
 
     # Set up Spotify OAuth
     scope = 'user-top-read' 

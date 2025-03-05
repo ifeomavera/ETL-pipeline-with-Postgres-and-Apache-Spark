@@ -11,8 +11,8 @@ import subprocess
 def job1():
     # Set your credentials
     client_id = 'da23dea1effe47aa9a166aae9f75a940'
-    client_secret = '372afc0e83154ed2976330775037b61e'
-    redirect_uri = 'http://localhost:8888/callback'
+    client_secret = '0ebadb5204dc46459d7b024b940e2e5f'
+    redirect_uri = 'http://127.0.0.1:8888/callback'
 
     # Set up Spotify OAuth
     scope = 'user-read-recently-played'
@@ -31,7 +31,7 @@ def job1():
         tracks_ls = []
 
     # Get current user's playlists
-    recent_tracks = sp.current_user_recently_played(limit=50, after=None, before=None)
+    recent_tracks = sp.current_user_recently_played(limit=50)
 
     # Creating the recent tracks list
     recent_tracks_ls = []
