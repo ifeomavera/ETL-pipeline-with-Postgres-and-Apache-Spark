@@ -32,6 +32,8 @@ def job1():
 
     # Get current user's playlists
     recent_tracks = sp.current_user_recently_played(limit=50)
+    print(f"API Status Code: {sp.current_user_recently_played(limit=50).get('status_code', 'No status available')}")
+
 
     # Creating the recent tracks list
     recent_tracks_ls = []
